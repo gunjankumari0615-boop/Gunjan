@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+        }
+
+        .clock {
+            position: relative;
+            height: 200px;
+            width: 200px;
+            background-color: rgb(1, 20, 20);
+            border-radius: 50%;
+        }
+
+        .sec {
+            height: 50%;
+            width: 8px;
+            position: absolute;
+            background-color: blue;
+            left: 48%;
+            bottom: 50%;
+            transform-origin: 50% 100%;
+            animation: anim 5s;
+            border-radius: 50%;
+        }
+        .min {
+            height: 40%;
+            width: 8px;
+            position: absolute;
+            background-color: rgb(255, 0, 200);
+            left: 48%;
+            bottom: 50%;
+            transform-origin: 50% 100%;
+            animation: anim 7s;
+            border-radius: 50%;
+        }
+        .hour {
+            height: 30%;
+            width: 8px;
+            position: absolute;
+            background-color: rgb(231, 3, 3);
+            left: 48%;
+            bottom: 50%;
+            transform-origin: 50% 100%;
+            animation: anim 10s;
+            border-radius: 50%;
+        }
+        @keyframes anim{
+            from{
+                  transform: rotate(0deg);
+
+            }to{
+                transform: rotate(360deg);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="sec"></div>
+        <div class="min"></div>
+        <div class="hour"></div>
+    </div>
+</body>
+
+</html>
