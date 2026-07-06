@@ -1,0 +1,450 @@
++
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav {
+            height: 80px;
+            background-color: aliceblue;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        nav>button {
+            height: 55%;
+            text-transform: capitalize;
+            border-radius: 20px;
+            border: 2px solid black;
+            padding: 5px;
+            font-size: 20px;
+        }
+
+        .dropdown {
+            width: 80px;
+            position: relative;
+        }
+
+        .dropdown>.cartsection {
+            height: 500px;
+            width: 500px;
+            background-color: #f3cece;
+            position: absolute;
+            visibility: hidden;
+            right: 0;
+            transition: .5s;
+            opacity: 0;
+            top: 0%;
+            overflow-y: scroll;
+        }
+
+        .dropdown:hover .cartsection {
+            opacity: 1;
+            top: 100%;
+            visibility: visible;
+        }
+
+        .cartcard {
+            display: flex;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .card {
+            height: 400px;
+            width: 250px;
+            background-color: antiquewhite;
+        }
+
+        .card>.img {
+            height: 50%;
+            width: 100%;
+            background-image: url("./OIP.webp");
+            background-size: 100% 100%;
+        }
+
+        .slider {
+            height: 500px;
+            width: 50%;
+            background: url("./images.jpg");
+            background-size: 100% 100%;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <nav>
+        <button onclick="all1()">all</button>
+        <button onclick="cloths()">cloths</button>
+        <button onclick="shoes()">shoes</button>
+        <button onclick="electronic()">electronic</button>
+        <button class="dropdown">
+            <span>cart</span>
+            <div class="cartsection">
+                <!-- <div class="cartcard">
+                    <img src="./download (1).jpg" height="200px" alt="">
+
+                    <div>
+                        <p>product: name</p>
+                        <p>discription: name</p>
+                    </div>
+                </div> -->
+            </div>
+        </button>
+    </nav>
+
+    <div class="slider"></div>
+
+    <button onclick="prev()">&lt</button>
+    <button onclick="prev()">&gt</button>
+
+    <div class="container"></div>
+
+    <script>
+        // let slider = document.getElementsByClassName("slider")[0]
+        let slider = document.querySelector(".slider")
+        let i = 0
+        let img = ["./1.webp", "./phn.webp", "./sh.webp", "./ank.webp"]
+
+        slider.style.backgroundImage = `url("${img[i]}")`
+        let prev = () => {
+            i--
+            if (i < 0) {
+                i = img.length - 1
+            }
+            console.log(i);
+            slider.style.backgroundImage = `url("${img[i]}")`
+        }
+        let next = () => {
+            i++
+            if (i > img.length - 1) {
+                i = 0
+            }
+            console.log(img);
+            slider.style.backgroundImage = `url("${img[i]}")`
+        }
+
+        setInterval(next, 2000)
+
+
+
+
+        data = [
+            {
+                id: 0,
+                img: "./1.webp",
+                name: "gown",
+                category: "cloths",
+                description: "beautiful gown",
+                price: 4000,
+                quntity: 0 
+
+            },
+            {
+                id: 1,
+                img: "./2.oip.jpg",
+                name: "onepiece",
+                category: "cloths",
+                description: "beautiful lehenga",
+                price: 5000,
+                 quntity: 0 
+
+            },
+            {
+                id: 2,
+                img: "./bly.jpg",
+                name: "bluepiece",
+                category: "cloths",
+                description: "beautiful suit",
+                price: 2000,
+                 quntity: 0 
+
+            },
+            {
+                id: 3,
+                img: "./ank.webp",
+                name: "anarkali",
+                category: "cloths",
+                description: "beautiful suit",
+                price: 2000,
+                 quntity: 0 
+
+            },
+
+            {
+                id: 4,
+                img: "./image.png",
+                name: "nike shoe",
+                category: "shoes",
+                description: "best shoe in this universe",
+                price: 2000,
+                 quntity: 0 
+
+            },
+            {
+                id: 5,
+                img: "./sh.webp",
+                name: "reebok shoe",
+                category: "shoes",
+                description: "best shoe in this universe",
+                price: 2000,
+                 quntity: 0 
+
+            },
+            {
+                id: 6,
+                img: "./images (1).jpg",
+                name: "adidas shoe",
+                category: "shoes",
+                description: "best shoe in this universe",
+                price: 2000,
+                 quntity: 0 
+
+            },
+            {
+                id: 7,
+                img: "./download (2).jpg",
+                name: "iphone",
+                category: "electronic",
+                description: "best mobile in this universe",
+                price: 2000,
+                 quntity: 0 
+
+            },
+            {
+                id: 8,
+                img: "./download (3).jpg",
+                name: "vivo y200",
+                category: "electronic",
+                description: "best mobile in this universe",
+                price: 2000,
+                 quntity: 0 
+
+            },
+            {
+                id: 9,
+                img: "./download (4).jpg",
+                name: "samsung",
+                category: "electronic",
+                description: "best mobile in this universe",
+                price: 2000,
+                 quntity: 0 
+
+            },
+
+        ]
+        let cart = []
+        let container = document.getElementsByClassName("container")[0]
+        let cartsection = document.getElementsByClassName("cartsection")[0]
+
+        console.log(container);
+
+        function all1() {
+            // console.log("kjd");
+            container.innerHTML = ""
+
+            data.map(function (v, k) {
+                // console.log(k, v);
+
+                container.innerHTML += `<div class="card">
+            <div class="img" style='background-image:url("${v.img}")'}"></div>
+            <p>product:${v.name}</p>
+            <p>description: ${v.description}</p>
+            <p>price:$${v.price}</p>
+            <button onclick="addtocart(${v.id})">buy now</button>
+        </div>`
+            })
+        }
+        all1()
+        function cloths() {
+            container.innerHTML = ""
+            // console.log("kjd");
+            let newdata = data.filter((v, k) => {
+                // console.log(k,v);
+
+                return v.category == "cloths"
+            })
+
+            console.log(newdata);
+
+            newdata.map(function (v, k) {
+                console.log(k, v);
+
+                container.innerHTML += `<div class="card">
+            <div class="img" style='background-image:url("${v.img}")'}"></div>
+            <p>product:${v.name}</p>
+            <p>description: ${v.description}</p>
+            <p>price:$${v.price}</p>
+            <button onclick="addtocart(${v.id})">buy now</button>
+        </div>`
+            })
+        }
+        all1()
+        function shoes() {
+            container.innerHTML = ""
+            // console.log("kjd");
+            let newdata = data.filter((v, k) => {
+                // console.log(k,v);
+
+                return v.category == "shoes"
+            })
+
+            console.log(newdata);
+
+            newdata.map(function (v, k) {
+                console.log(k, v);
+                container.innerHTML += `<div class="card">
+            <div class="img" style='background-image:url("${v.img}")'}"></div>
+            <p>product:${v.name}</p>
+            <p>description: ${v.description}</p>
+            <p>price:$${v.price}</p>
+            <button onclick="addtocart(${v.id})">buy now</button>
+        </div>`
+            })
+        }
+
+        all1()
+        function electronic() {
+            container.innerHTML = ""
+            // console.log("kjd");
+            let newdata = data.filter((v, k) => {
+                // console.log(k,v);
+
+                return v.category == "electronic"
+            })
+
+            console.log(newdata);
+
+            newdata.map(function (v, k) {
+                console.log(k, v);
+                container.innerHTML += `<div class="card">
+            <div class="img" style='background-image:url("${v.img}")"'}></div>
+            <p>product:${v.name}</p>
+            <p>description: ${v.description}</p>
+            <p>price:$${v.price}</p>
+            <button onclick="addtocart(${v.id})">buy now</button>
+
+           </div>`
+           
+        })}
+
+        function addtocart(k) {
+           let found = null
+           cartsection.innerHTML = ""
+           console.log("id", data[k], "found:", found)
+           
+           found = cart.find(function (v1, k1) {
+            console.log(k1,v1);
+            return v1.id == data[k].id
+           })
+           console.log("cart val", data[k], "found" , found)
+           console.log("cart ", cart)
+           if (found){
+            data[k].quntity += 1
+            cart[k].quntity += 1
+            
+           } else {
+            data[k].quntity += 1
+            cart.push(data[k])
+           }
+            document.cookie= `cartval=${JSON.stringify(cart)}`
+           cart.forEach(function(v,k) {
+
+            cartsection.innerHTML += `<div class= "cartcard">
+                <img src="${v.img}" height="200px" alt="">
+
+                <div>
+                    <p>product: ${v.name} </p>
+                    <p>discription: ${v.description}</p>
+                    <p>price: ${v.price}</p>
+                    <button onclick="inc(${v.id})">+</button>
+                    <button>${v.quntity}</button>
+                    <button onclick="dec(${v.id})">-</button>
+
+                </div>
+              </div>`
+         })
+        }
+            console.log(JSON.parse(document.cookie.split("=")[1]));
+            cart = JSON.parse(document.cookie.split("=")[1])
+           cart.forEach(function(v,k) {
+
+            cartsection.innerHTML += `<div class= "cartcard">
+                <img src="${v.img}" height="200px" alt="">
+
+                <div>
+                    <p>product: ${v.name} </p>
+                    <p>discription: ${v.description}</p>
+                    <p>price: ${v.price}</p>
+                    <button onclick="inc(${v.id})">+</button>
+                    <button>${v.quntity}</button>
+                    <button onclick="dec(${v.id})">-</button>
+
+                </div>
+              </div>`
+         })
+        
+        // function addtocart(k){}
+        function inc(k){
+            cartsection.innerHTML = ""
+            data[k].quntity += 1
+            cart[k].quntity += 1
+            document.cookie= `cartval=${JSON.stringify(cart)}`
+            cart.forEach(function (v,k) {
+                cartsection.innerHTML += `<div class= "cartcard">
+                <img src="${v.img}" height="200px" alt="">
+
+                <div>
+                    <p>product: ${v.name} </p>
+                    <p>discription: ${v.description}</p>
+                    <p>price: ${v.price}</p>
+                    <button onclick="inc(${v.id})">+</button>
+                    <button>${v.quntity}</button>
+                    <button onclick="dec(${v.id})">-</button>
+
+                </div>
+              </div>`
+            })
+        
+        }
+        function dec(k){
+            cartsection.innerHTML = ""
+            console.log(data[k]);
+            data[k].quntity -= 1
+            cart[k].quntity -= 1
+            document.cookie= `cartval=${JSON.stringify(cart)}`
+            cart.forEach(function (v,k) {
+                cartsection.innerHTML += `<div class= "cartcard">
+                <img src="${v.img}" height="200px" alt="">
+
+                <div>
+                    <p>product: ${v.name} </p>
+                    <p>discription: ${v.description}</p>
+                    <p>price: ${v.price}</p>
+                    <button onclick="inc(${v.id})">+</button>
+                    <button>${v.quntity}</button>
+                    <button onclick="dec(${v.id})">-</button>
+
+                </div>
+              </div>`
+            })
+        
+        }
+
+
+    </script>
+</body>
+
+</html>
