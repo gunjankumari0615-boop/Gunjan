@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous">
+        </script>
+
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        .container{
+            width: 100%;
+            margin: auto;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .id_card{
+            width: 500px;
+            box-shadow: 0 0 5px;
+            padding: 10px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 220px;
+        }
+        p,h1{
+            padding: 0;
+            margin: 0;
+        }
+        .cardBody{
+            display: flex;
+            justify-content: left;
+            gap: 20px;
+        }
+        p{
+            font-weight: bold;
+            margin: 10px;
+        }
+        .banner{
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background-color: red;
+            top: 0;
+            left: 0;
+            border: 1px dotted blue;
+        }
+        label span{
+            color: red;
+        }
+        label, input{
+            display: block;
+            margin: 10px;
+        }
+        img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .form{
+            box-shadow: 0 0 10px lightgray inset;
+            padding: 10px;
+            border-radius: 10px;
+            width: 30%;
+        }
+        input{
+            font-size: 20px;
+            padding: 2px;
+            border: 0;
+            outline: none;
+            box-shadow: 0 0 5px;
+            border-radius: 5px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="id_card">
+            <div class="banner"></div>
+            <div class="cardTop">
+                <h1>COMPANY NAME & LOGO</h1>
+            </div>
+            <div class="cardBody">
+                <div class="profileImage">
+                    <img src="./image.png" alt="" id="pImage">
+                </div>
+                <div class="profileDetails">
+                    <p>Name: <span class="name"></span></p>
+                    <p>Desig.: <span class="dsg"></span></p>
+                    <p>ID No.: <span class="id_no"></span></p>
+                    <p>Issued: <span class="issue_date"></span></p>
+                    <p>Expires: <span class="expires"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <h2>Generate ID Form</h2>
+            <div class="input">
+                <label>Name <span>*</span></label>
+                <input type="text" placeholder="Name" id="name"/>
+            </div>
+            <div class="input">
+                <label>Designation <span>*</span></label>
+                <input type="text" placeholder="Designation" id="desg"/>
+            </div>
+            <div class="input">
+                <label>ID No. <span>*</span></label>
+                <input type="number" placeholder="ID No." id="id_no"/>
+            </div>
+            <div class="input">
+                <label>Issue Date <span>*</span></label>
+                <input type="date" id="isdate"/>
+            </div>
+            <div class="input">
+                <label>Expiry Date <span>*</span></label>
+                <input type="date" id="exdate"/>
+            </div>
+             <div class="input">
+                <label>Profile Phto <span>*</span></label>
+                <input type="file" id="profile"/>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const formName = $("#name")
+        const formDesg = $("#desg")
+        const formIdNo = $("#id_no")
+        const formIssueDate = $("#isdate")
+        const formExDate = $("#exdate")
+        const profileImg = $("#profile")
+
+        const name = $(".name")
+        const dsg = $(".dsg")
+        const idNo = $(".id_no")
+        const isDate = $(".issue_date")
+        const exDate = $(".expires")
+        const pImage = $("#pImage")
+
+
+        formName.change(()=>{
+            // name.textContent = formName.val()
+            name.text(`${formName.val()}`)
+            console.log(formName.val())
+        })
+        formDesg.change(()=>{
+        dsg.text(`${formDesg.val()}`)
+        })
+        formIdNo.change(()=>{
+            idNo.text(`${formIdNo.val()}`)
+        })
+        formIssueDate.change(()=>{
+            isDate.text(`${formIssueDate.val()}`)
+        })
+        formExDate.change(()=>{
+            exDate.text(`${formExDate.val()}`)
+        })
+        profileImg.change((e)=>{
+            console.log(profileImg)
+            const file = e.target.files[0]
+
+            const reader = new FileReader(); // Web API
+
+            reader.onload = ()=>{
+
+                pImage.attr("src", reader.result)
+            }
+
+            reader.readAsDataURL(file)
+
+
+        })
+        
+
+        </script>
+</body>
+
+</html>

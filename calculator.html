@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: black;
+            margin: auto;
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0 0 5px red;
+            width: 90%;
+            max-width: 350px;
+
+        }
+
+        input {
+            width: 90%;
+            margin: 9px;
+            border: 0;
+            outline: none;
+            text-align: right;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .buttons button {
+            width: 90%;
+        }
+
+        .buttons button {
+            /* width: 100px; */
+            height: 45px;
+            border-radius: 50px;
+            color: rgb(14, 13, 13);
+            background-color: rgb(241, 233, 233);
+            border: 0;
+        }
+
+        .zero {
+            grid-column: span 2;
+            border-radius: 10px !important;
+        }
+
+        .btn {
+            background-color: orange !important;
+        }
+
+
+        /* Mobile */
+        @media (max-width: 500px) {
+
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .buttons {
+                gap: 10px;
+                padding: 5px;
+            }
+
+            .buttons button {
+                width: 100%;
+                height: 55px;
+                font-size: 18px;
+            }
+
+            input {
+                width: 95%;
+                height: 45px;
+                font-size: 22px;
+            }
+
+            .zero {
+                grid-column: span 2;
+                border-radius: 10px !important;
+            }
+
+        }
+
+        /* Tablet */
+        @media (min-width: 501px) and (max-width: 900px) {
+
+            .container {
+                width: 60%;
+                max-width: 400px;
+            }
+
+            .buttons {
+                gap: 15px;
+            }
+
+            .buttons button {
+                /* width: 100px; */
+                height: 60px;
+            }
+
+            .zero {
+                grid-column: span 2;
+                border-radius: 10px !important;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <input type="text" name="" id="inp">
+        </div>
+        <div class="buttons">
+            <button class="btn" onclick="del()">c</button>
+            <button class="btn" onclick="ac()">ac</button>
+            <button class="btn" onclick="printer(this)">%</button>
+            <button class="btn" onclick="printer(this)">/</button>
+            <button onclick="printer(this)">7</button>
+            <button onclick="printer(this)">8</button>
+            <button onclick="printer(this)">9</button>
+            <button class="btn" onclick="printer(this)">*</button>
+            <button onclick="printer(this)">4</button>
+            <button onclick="printer(this)">5</button>
+            <button onclick="printer(this)">6</button>
+            <button class="btn" onclick="printer(this)">-</button>
+            <button onclick="printer(this)">1</button>
+            <button onclick="printer(this)">2</button>
+            <button onclick="printer(this)">3</button>
+            <button class="btn" onclick="printer(this)">+</button>
+            <button class="zero" onclick="printer(this)">0</button>
+            <button onclick="calc()">=</button>
+            <button class="btn" onclick="printer(this)">.</button>
+        </div>
+    </div>
+
+    <script>
+
+        let inp = document.getElementById("inp")
+        let ispercentage = false
+
+        function printer(tag) {
+            let value = inp.value;
+            let lastnum = value[value.length - 1];
+            let newnum = tag.innerHTML;
+
+            let operators = ["+", "-", "*", "%"];
+            if (operators.includes(lastnum) && operators.includes(newnum)) {
+                if (inp.value.includes("%")) {
+                    ispercentage = true
+                }
+                inp.value = value.slice(0, -1) + newnum;
+            } else {
+                inp.value += newnum
+            }
+
+
+        }
+
+        function calc() {
+
+            if (inp.value.includes("%")) {
+                console.log(inp.value.split("%"))
+                let data = inp.value.split("%")
+                let p_val = data[0] / 100 * data[1]
+                inp.value = p_val
+                console.log(p_val)
+                // return
+
+            } else {
+                inp.value = eval(inp.value)
+            }
+
+        }
+        function ac() {
+            inp.value = ""
+        }
+        function del() {
+            console.log(inp.value.slice(1, 5));
+            inp.value = inp.value.slice(0, inp.value.length - 1)
+        }
+
+        function calc() {
+
+            if (inp.value.includes("%")) {
+
+                let data = inp.value.split("%");
+
+                let first = Number(data[0]);
+                let second = Number(data[1]);
+
+                let result = (first / 100) * second;
+
+                inp.value = result;
+
+            } else {
+                inp.value = eval(inp.value);
+            }
+
+        }
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
